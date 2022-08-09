@@ -1,46 +1,41 @@
 package com.devsuperior.dslearnbds.entities;
 
+import com.devsuperior.dslearnbds.entities.enums.ResourceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_offer")
+@Table(name = "tb_resource")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Offer implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Resource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String edition;
-    private Instant startMoment;
-    private Instant endMoment;
+    private String title;
+    private String description;
+    private Integer position;
+    private String imgUri;
+    private ResourceType type;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
-
-    @OneToMany(mappedBy = "offer")
-    private List<Resource> resources = new ArrayList<>();
+    @JoinColumn(name = "offer_id")
+    private Offer offer;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Offer offer = (Offer) o;
-        return id.equals(offer.id);
+        Resource resource = (Resource) o;
+        return id.equals(resource.id);
     }
 
     @Override
