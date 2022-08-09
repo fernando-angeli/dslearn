@@ -7,35 +7,35 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_course")
+@Table(name = "tb_offer")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course implements Serializable {
+public class Offer implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String imgUri;
-    private String imgGrayUri;
+    private String edition;
+    private Instant startMoment;
+    private Instant endMoment;
 
-    @OneToMany(mappedBy = "course")
-    private List<Offer> offers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return id.equals(course.id);
+        Offer offer = (Offer) o;
+        return id.equals(offer.id);
     }
 
     @Override
