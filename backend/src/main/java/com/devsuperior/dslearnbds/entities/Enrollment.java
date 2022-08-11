@@ -1,12 +1,12 @@
 package com.devsuperior.dslearnbds.entities;
 
 import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
@@ -14,7 +14,8 @@ import java.time.Instant;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Enrollment {
+public class Enrollment implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private EnrollmentPK id = new EnrollmentPK();
