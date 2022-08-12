@@ -36,12 +36,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications = new ArrayList<>();
 
-    @OneToMany(mappedBy = "author")
-    private List<Topic> topics = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "likes")
-    private Set<Topic> likes = new HashSet<>();
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
