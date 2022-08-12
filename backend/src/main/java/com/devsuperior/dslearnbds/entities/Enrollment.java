@@ -29,8 +29,10 @@ public class Enrollment implements Serializable {
     private boolean onlyUpdate;
 
     @ManyToMany(mappedBy = "enrollmentsDone") //ao puxar um usuário, já irá trazer os roles junto
-
     private Set<Lesson> lessonsDone = new HashSet<>();
+
+    @OneToMany(mappedBy = "enrollment")
+    private Set<Deliver> deliveries = new HashSet<>();
 
     public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available, boolean onlyUpdate) {
         id.setUser(user);

@@ -40,6 +40,9 @@ public abstract class Lesson implements Serializable {
     )
     private Set<Enrollment> enrollmentsDone = new HashSet<>();
 
+    @OneToMany(mappedBy = "lesson")
+    private Set<Deliver> delivers = new HashSet<>();
+
     public Lesson(Long id, String title, Integer position, Section section) {
         this.id = id;
         this.title = title;
