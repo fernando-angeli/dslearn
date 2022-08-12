@@ -37,6 +37,9 @@ public class Offer implements Serializable {
     @OneToMany(mappedBy = "offer")
     private List<Resource> resources = new ArrayList<>();
 
+    @OneToMany(mappedBy = "offers")
+    private List<Topic> topics = new ArrayList<>();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_deliver")
@@ -36,4 +37,16 @@ public class Deliver implements Serializable {
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Deliver deliver = (Deliver) o;
+        return id.equals(deliver.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
